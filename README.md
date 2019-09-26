@@ -35,6 +35,3 @@ struct dvPair {
     char value[32];# DBM-Almond
 }
 
-
-Problem : 
-Database is not getting created 
