@@ -1,94 +1,70 @@
-//#include <fcntl.h>
+#include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
-//#include <unistd.h>
-//#include <stdlib.h>
 #include "libAlmondDBM.h"
 
-#define num 50
+enum deviceType{
+ UnknownDeviceType = 0,
+ TemperatureSensor = 1,
+ WaterSensor = 2,
+ FireSensor = 3,
+ DoorSensor = 4,
+ MoistureSensor = 5,  
+ PressureSensor = 6,
+ GasSensor = 7
+};
 
-enum index{
-   Temperature = 1,
-   Firestate = 2
-}; 
+enum type{
+ DoorState = 1,
+ WaterState = 2,
+ GasState = 3,
+ FireState = 4,
+ Temperature = 5,
+ Pressure = 6,
+ Humidity = 7
+};
 
-enum devType{
-  UnknownDeviceType = 0,
-  BinarySwitch = 1,
-  MultilevelSwitch = 2,
-  BinarySensor = 3,
-  MultilevelSwitchOnOff = 4,
-  DoorLock = 5,
-  Alarm = 6,
-  Thermostat = 7,
-  Gateway = 8,
-  FireSensor = 9,
-  WaterSensor = 10, 
-  TemperatureSensor = 11,
-  DoorSensor = 12
-} ;
+
 struct deviceData {
-    int id;
-    int deviceType; //devType deviceType; 
-    char name[32];
-    char location[32];
-    char manufacturer[32];
+    char id;
+    int deviceType; //define some enumerations
+    char name;
+    char location;
+    char manufacturer;
     int lastModifiedTime;
-}Data;
+} Data;
 
 struct dvPair {
     int type;
     int id; // to indicate the dvPair number
     char value[32];
-}Pair;
-
+} Pair;
 
 
 int main()
 {
-   printf("\n---MENU---\n\n");
-   printf("1.ADD DEVICE\n");
-   printf("2.EDIT DEVICE\n");
-   printf("3.DELETE DEVICE\n");
-   printf("4.DELETE ALL\n\n");
+    printf("-------MENU------\n\n");
+    printf("------1.ADD------\n");
+    printf("------2.DELETE---\n");
+    printf("------3.EDIT-----\n");
+    printf("------4.DEL ALL--\n\n");
 
-   int t;
-   printf("Enter the user choice\n");
-   scanf("%d",&t);
-   DEPOT *depot;
-   FILE *f;
-   f = fopen("FILE.DB","a+");
-   
-   if(t == 1)
-   {
-      
-      printf("Enter the Device ID \n");
-      scanf("%d",&Data.id);
-      printf("Enter the DeviceType \n");
-      scanf("%d",&Data.deviceType);
-      printf("Enter the Device name\n");
-      scanf("%s",&Data.name);
-      printf("Enter the Device location\n");
-      scanf("%s",&Data.location);
-      printf("Enter the Device manufacturer\n"); 
-      scanf("%s",&Data.manufacturer);
-      printf("Enter the Device last modified time\n");
-      scanf("%d",&Data.lastModifiedTime);
-      printf("Enter the device type\n");
-      scanf("%d",&Pair.type);
-      printf("Enter the index id\n");
-      scanf("%d",&Pair.id);
-      printf("Enter the index value\n");
-      scanf("%s",&Pair.value);
-      depot =  dpopen("FILE.DB",DP_OWRITER,1);
-      printf("%d depot \n",depot);
-      printf("KEY    VALUE \n");
+    DEPOT* depot;
+    DEPOT *dpopen(const char *name, int omode, int bnum);
+    int dpput(DEPOT *depot, const char *kbuf, int ksiz, const char *vbuf, int vsiz, int dmode);
+    char *dpget(DEPOT *depot, const char *kbuf, int ksiz, int start, int max, int *sp);
+    depot = dpopen("DBM.bin",6,350);
+    int sp = 11;
+    printf("%s \n",dpget(depot,"0",1,0,11,&sp));
 
-       int put = dpput(depot,"1",1,"1",1,DP_DCAT);
-       printf("%d put\n",put);
-   }
-   else
-      printf("ncx\n");
-  //dpclose(depot);
+    printf("Enter the choice from MENU\n");
+    int choice;
+    scanf("%d",&choice);
+    
+    /*if(choice == 1)
+    {
+       printf("Enter the Device id\n");
+       scanf("%d",&Data.id);*/
+
+    dpclose(depot);
     return 0;
 }
