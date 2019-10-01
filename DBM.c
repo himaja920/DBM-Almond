@@ -27,7 +27,7 @@ enum type{
 
 struct deviceData {
     int id;
-    int deviceType; //define some enumerations
+    int deviceType; 
     char name[30];
     char location[30];
     char manufacturer[30];
@@ -36,7 +36,7 @@ struct deviceData {
 
 struct dvPair {
     int type;
-    int id; // to indicate the dvPair number
+    int id; 
     char value[20];
 } ;
 
