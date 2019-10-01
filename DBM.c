@@ -2,8 +2,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "libAlmondDBM.h"
-#include <bits/stdc++.h>
-
 #define SIZE 120
 
 enum deviceType{
