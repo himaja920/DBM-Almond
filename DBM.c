@@ -81,7 +81,7 @@ int main()
         scanf("%s",&Data.deviceType);
        
         printf("Enter the Device data\n");
-        scanf("%s %s %s %s",&Data.name,&Data.location,&Data.manufacturer,&Data.lastModifiedTime);
+        scanf("%s %s %s",&Data.name,&Data.location,&Data.manufacturer);
        
         char buf[100];
         char *d = new char[1];
@@ -90,9 +90,11 @@ int main()
         strcat(buf,Data.name);
         strcat(buf,Data.location);
         strcat(buf,Data.manufacturer);
-        char *a = new char[4];
-        sprintf(a, "%d", &Data.lastModifiedTime); 
-        strcat(buf,a);
+        time_t t =  dpmtime(depot);
+        printf("Last modified time is %d\n",t);
+        char *tt = new char[10];
+        sprintf(tt,"%ld",t);
+        strcat(buf,tt);
              
         char *id = new char[1];
         sprintf(id,"%d",Data.id);
