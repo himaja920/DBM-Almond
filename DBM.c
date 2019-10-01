@@ -89,11 +89,12 @@ int main()
         strcat(buf,Data.name);
         strcat(buf,Data.location);
         strcat(buf,Data.manufacturer);
-        time_t t =  dpmtime(depot);
-        printf("Last modified time is %d\n",t);
-        char *tt = new char[10];
-        sprintf(tt,"%ld",t);
-        strcat(buf,tt);
+        time_t tt =  dpmtime(depot);
+        Data.lastModifiedTime = tt;
+        printf("Last modified time is %d\n",Data.lastModifiedTime);
+        char *t = new char[8];
+        sprintf(t,"%ld",Data.lastModifiedTime);
+        strcat(buf,t);      
              
         char *id = new char[1];
         sprintf(id,"%d",Data.id);
