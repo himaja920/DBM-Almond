@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "libAlmondDBM.h"
-#define SIZE 120
 
 enum deviceType{
  UnknownDeviceType = 0,
