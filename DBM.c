@@ -189,6 +189,19 @@ int main()
              l = dpgetwb(depot,b,-1,start,max,k);
              printf("l is %d\n",l);
           }
+          else if(id == NAME)
+           {
+             char name[32]; 
+             printf("Enter the new Device name\n");
+             scanf("%s",name);
+             char *n = new char[32];
+             snprintf(n,32,"%s",name);
+             printf("Enter the starting value\n");
+             scanf("%d",&start);
+             max = strlen(name)+start;
+             l = dpgetwb(depot,b,-1,start,max,n);
+             delete(n);
+           } 
           else 
               printf("NOt done\n");  
            delete(b);
