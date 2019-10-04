@@ -154,7 +154,7 @@ int main()
             printf("Record not deleted\n");
           }
           else
-           printf("Deleted successfully a record\n");
+           printf("Deleted the record\n");
      }
  
      else if(choice == 3)
