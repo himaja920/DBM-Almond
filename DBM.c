@@ -109,7 +109,7 @@ int main()
         snprintf( buf,BUFSIZE, "%d %s %s %s %d",Data.deviceType, Data.name,Data.location, Data.manufacturer,Data.lastModifiedTime);
       
         printf("buf is %s\n",buf);
-        k = dpput(depot,id,1,buf,-1,DP_DCAT);
+        k = dpput(depot,id,1,buf,-1,DP_DKEEP);
         printf("k is %d\n",k); 
 
         delete(id);
